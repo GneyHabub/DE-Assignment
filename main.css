@@ -2,20 +2,44 @@
     box-sizing: border-box;
 }
 
-#myChart{
-    height: 300px;
-    width: 500px;
+body{
+    max-width: 90% !important;
 }
 
 header{
+    font-family: Arial, serif;
+
     text-align: center;
     font-size: 40px;
 
-    border: black 3px solid;
+    border: black 1px solid;
     border-radius: 5px;
 
-    background-color: azure;
-    box-shadow: 5px 5px darkgray;
+    box-shadow: 5px 5px gray;
 
     margin-bottom: 15px;
+    padding: 5px;
+}
+
+button{
+    width: 120px;
+}
+
+.main_block{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.sidebar{
+    margin-top: 35px;
+}
+
+.orig_graph{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 5px;
+}
+
+#gap{
+    width: 120px;
 }

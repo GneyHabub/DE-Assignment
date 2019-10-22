@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.idea/modules.xml
+.idea/DE-Assignment.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.DS_Store
+.idea/vcs.xml

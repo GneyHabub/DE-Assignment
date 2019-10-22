@@ -6,44 +6,24 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="icon" href="img/icons8-калькулятор-30.png">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
 </head>
 <body>
     <header>
         DE Assignment
     </header>
+    <div class="main_block">
+        <div class="chart"><canvas id="myChart"></canvas></div>
+        <div class="sidebar">
+            <div class="orig_graph">
+                <button id="delete_item">DELETE</button>
+                <button id="add_item">ADD</button>
+                <input type="number" id="gap" placeholder="Gap">
+                <button id="change_gap">APPLY</button>
+            </div>
+        </div>
+    </div>
 
-    <div><canvas id="myChart" aria-label="Hello ARIA World"></canvas></div>
-    <script>
-        let a = [2, 4, 6, 8, 10, 12, 14];
-        let b = [34, 17, 7, 3, 1.5, 0.75, 0];
-
-        let ctx = document.getElementById('myChart').getContext('2d');
-        let chart1 = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-                labels: ['0', '1', '2', '3', '4', '5', '6'],
-                datasets: [{
-                    label: 'My First dataset',
-                    borderColor: '#111111',
-                    pointHoverBackgroundColor: 'red',
-                    data: [10, 3, 10, 5, 2, 20, 14]
-                }, {
-                    label: 'My Second Dataset',
-                    borderColor: 'red',
-                    data: a
-                }, {
-                    label: 'My Third Dataset',
-                    borderColor: 'yellow',
-                    data: b
-                }]
-            },
-
-            // Configuration options go here
-                options: {}
-        });
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
