@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+
+#myChart{
+    height: 300px;
+    width: 500px;
+}
+
+header{
+    text-align: center;
+    font-size: 40px;
+
+    border: black 3px solid;
+    border-radius: 5px;
+
+    background-color: azure;
+    box-shadow: 5px 5px darkgray;
+
+    margin-bottom: 15px;
+}
