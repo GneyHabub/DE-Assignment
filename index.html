@@ -6,20 +6,34 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="icon" href="img/icons8-калькулятор-30.png">
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+    <link id="theme" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
 </head>
 <body>
     <header>
+        <div class="theme_change">
+            <img src="img/sun.png" class="theme" id="change_theme">
+        </div>
         DE Assignment
     </header>
     <div class="main_block">
         <div class="chart"><canvas id="myChart"></canvas></div>
         <div class="sidebar">
             <div class="orig_graph">
-                <button id="delete_item">DELETE</button>
-                <button id="add_item">ADD</button>
                 <input type="number" id="gap" placeholder="Gap">
                 <button id="change_gap">APPLY</button>
+                <p id="gap_value">0.5</p>
+
+                <input type="number" id="max_point" placeholder="Max X">
+                <button id="change_max_point">APPLY</button>
+                <p id="max_point_value">6</p>
+
+                <input type="number" id="x0" placeholder="x0">
+                <button id="change_x0">SET</button>
+                <p id="x0_value">1</p>
+
+                <input type="number" id="y0" placeholder="y0">
+                <button id="change_y0">SET</button>
+                <p id="y0_value">2</p>
             </div>
         </div>
     </div>
