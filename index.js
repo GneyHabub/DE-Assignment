@@ -1,12 +1,22 @@
-let ctx = document.getElementById('myChart').getContext('2d');
-window.myLine = new Chart(ctx, config);
+let ctx1 = document.getElementById('graphs').getContext('2d');
+window.myLine = new Chart(ctx1, config1);
+
+let ctx2 = document.getElementById('comparison').getContext('2d');
+window.myLine2 = new Chart(ctx2, config2);
 
 function update_graphs(){
-    config.data.datasets[0].data = generate_original(x0, y0, max_point, gap, y);
-    config.data.datasets[1].data = generate_Euler(x0, y0, max_point, gap, y_prime);
-    config.data.datasets[2].data = generate_Improved_Euler(x0, y0, max_point, gap, y_prime);
-    config.data.datasets[3].data = generate_Ruhye_Kutta(x0, y0, max_point, gap, y_prime);
+    config1.data.datasets[0].data = generate_original(x0, y0, max_point, gap, y);
+    config1.data.datasets[1].data = generate_Euler(x0, y0, max_point, gap, y_prime);
+    config1.data.datasets[2].data = generate_Improved_Euler(x0, y0, max_point, gap, y_prime);
+    config1.data.datasets[3].data = generate_Runge_Kutta(x0, y0, max_point, gap, y_prime);
+    config2.data.datasets[0].data = [
+        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y,
+        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y,
+        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y
+    ];
+    console.log(config1.data.datasets[0].data);
     window.myLine.update();
+    window.myLine2.update();
 }
 
 let set_gap = document.getElementById('change_gap').addEventListener('click', function () {
@@ -54,8 +64,8 @@ let set_y0 = document.getElementById('change_y0').addEventListener('click', func
     document.getElementById('y0_value').innerText =  y0;
 });
 
-let theme = 'light';
-let theme_to_dark = document.getElementById('change_theme').onclick= function () {
+let theme = 'dark';
+let change_theme = document.getElementById('change_theme').onclick = function () {
     if (theme === 'dark'){
         theme = 'light';
         document.getElementById('theme').href = "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css";

@@ -29,19 +29,6 @@ button{
     height: 52px;
 }
 
-.theme{
-    width: 45px;
-    height: 45px;
-}
-.theme_change{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.theme_change:hover{
-    cursor: pointer;
-}
 .main_block{
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -49,7 +36,16 @@ button{
 }
 
 .sidebar{
-    margin-top: 35px;
+    height: 60%;
+
+    margin-top: 30px;
+    position: sticky;
+    top: 10px;
+
+    border: 2px solid rgb(22, 31, 39);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 5px 5px rgb(22, 31, 39);
 }
 
 .orig_graph{
@@ -71,4 +67,18 @@ p{
     height: 26px;
     margin: 0;
     text-align: center;
+}
+
+.theme{
+    width: 45px;
+    height: 45px;
+}
+.theme_change{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme_change:hover{
+    cursor: pointer;
 }

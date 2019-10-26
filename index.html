@@ -6,17 +6,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="icon" href="img/icons8-калькулятор-30.png">
     <link rel="stylesheet" href="main.css">
-    <link id="theme" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+    <link id="theme" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
 </head>
 <body>
     <header>
         <div class="theme_change">
-            <img src="img/sun.png" class="theme" id="change_theme">
+            <img src="img/moon.png" class="theme" id="change_theme">
         </div>
         DE Assignment
     </header>
     <div class="main_block">
-        <div class="chart"><canvas id="myChart"></canvas></div>
+        <div class="chart"><canvas id="graphs"></canvas></div>
         <div class="sidebar">
             <div class="orig_graph">
                 <input type="number" id="gap" placeholder="Gap">
@@ -36,6 +36,7 @@
                 <p id="y0_value">2</p>
             </div>
         </div>
+        <div class="chart"><canvas id="comparison"></canvas></div>
     </div>
     <script src="func.js"></script>
     <script src="config.js"></script>

@@ -58,7 +58,7 @@ function generate_Improved_Euler(start, y0, end, gap, fun) {
     return res;
 }
 
-function generate_Ruhye_Kutta(start, y0, end, gap, fun) {
+function generate_Runge_Kutta(start, y0, end, gap, fun) {
     let path = generate_points(start, end, gap);
     let y_axis = [];
     y_axis.push(y0);
@@ -70,7 +70,6 @@ function generate_Ruhye_Kutta(start, y0, end, gap, fun) {
         let k4 = gap*fun(path[i-1]+gap, y_axis[i-1] + k3);
         y_axis.push(y_axis[i-1] + (k1 + 2*k2 + 2*k3 + k4)/6);
     }
-    console.log(y_axis);
     for (let i = 1; i <= (end - start)/gap + 1; i++) {
         res.push({
             x: path[i-1],
