@@ -108,3 +108,4 @@ venv.bak/
 .idea/misc.xml
 .DS_Store
 .idea/vcs.xml
+*.xml
