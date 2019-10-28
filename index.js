@@ -11,10 +11,13 @@ function update_graphs(){
     config1.data.datasets[3].data = generate_Runge_Kutta(x0, y0, max_point, gap, y_prime);
     config2.data.datasets[0].data = [
         config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y,
-        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y,
-        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y
     ];
-    console.log(config1.data.datasets[0].data);
+    config2.data.datasets[1].data = [
+        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y,
+    ];
+    config2.data.datasets[2].data = [
+        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y,
+    ];
     window.myLine.update();
     window.myLine2.update();
 }
@@ -61,7 +64,7 @@ let set_y0 = document.getElementById('change_y0').addEventListener('click', func
         alert("WRONG NUMBER");
     }
     document.getElementById('y0').value = null;
-    document.getElementById('y0_value').innerText =  y0;
+    document.getElementById('y0_value').innerText =  y0.toString();
 });
 
 let theme = 'dark';

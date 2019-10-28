@@ -12,8 +12,9 @@ function generate_original(start, y0, end, gap, fun) {
     let y_axis = [];
     y_axis.push(y0);
     let res = [];
+    let c = (Math.log((y0/start)+1))/start;
     for (let i = 1; i <= (end - start)/gap + 1; i++) {
-        y_axis.push(fun(path[i]));
+        y_axis.push(fun(path[i], c));
     }
     for (let i = 1; i <= (end - start)/gap + 1; i++) {
         res.push({
@@ -79,8 +80,8 @@ function generate_Runge_Kutta(start, y0, end, gap, fun) {
     return res;
 }
 
-function y(x){
-    return x*(Math.pow(3, x)-1);
+function y(x, c){
+    return x*(Math.exp(x*c)-1);
 }
 
 function y_prime(x, y){

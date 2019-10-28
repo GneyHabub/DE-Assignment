@@ -35,7 +35,7 @@ let config1 = {
                 fill: 'none'
             },
             {
-                label: 'Ruhye-Kutta',
+                label: 'Runge-Kutta',
                 borderColor: '#31d328',
                 data: d,
                 lineTension: 0,
@@ -60,19 +60,39 @@ let config1 = {
 let config2 = {
     type: 'horizontalBar',
     data: {
-        labels: ['Euler', 'Improved Euler', 'Runge Kutta'],
+        labels: ['Global Error'],
         datasets:[{
-            label: 'Global Error',
-            borderColor: ['#fef75c', '#F33434', '#31D328'],
-            backgroundColor: ['rgba(254, 247, 92, 0.3', 'rgba(243, 52, 522, 0.3', 'rgba(49, 211, 40, 0.3'],
-            hoverBackgroundColor: ['rgba(254, 247, 92, 0.5', 'rgba(243, 52, 522, 0.5', 'rgba(49, 211, 40, 0.5'],
-            borderWidth: 1,
-            data: [
-                config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y,
-                config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y,
-                config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y
-            ]
-        }]
+                label: 'Euler',
+                borderColor: '#fef75c',
+                backgroundColor: 'rgba(254, 247, 92, 0.3)',
+                hoverBackgroundColor: 'rgba(254, 247, 92, 0.5)',
+                borderWidth: 1,
+                data: [
+                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y
+                ]
+            },
+            {
+                label: 'Improved Euler',
+                borderColor: '#F33434',
+                backgroundColor: 'rgba(243, 52, 522, 0.3)',
+                hoverBackgroundColor:'rgba(243, 52, 522, 0.5)',
+                borderWidth: 1,
+                data: [
+                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y
+
+                ]
+            },
+            {
+                label: 'Runge Kutta',
+                borderColor:'#31D328',
+                backgroundColor: 'rgba(49, 211, 40, 0.3)',
+                hoverBackgroundColor: 'rgba(49, 211, 40, 0.5)',
+                borderWidth: 1,
+                data: [
+                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y
+
+                ]
+            }]
     },
     options: {
         scales: {
