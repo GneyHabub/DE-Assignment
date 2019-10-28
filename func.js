@@ -1,9 +1,8 @@
 function generate_points(start, x, gap) {
     let res = [];
-    for (let i = start; i <= x+gap; i+=gap){
-        res.push(Number(i.toFixed(3)));
+    for (let i = start; i <= x; i += gap){
+        res.push(Number(i.toPrecision(3)));
     }
-    console.log("Пасхалочка");
     return res;
 }
 
@@ -14,7 +13,7 @@ function generate_original(start, y0, end, gap, fun) {
     let res = [];
     let c = (Math.log((y0/start)+1))/start;
     for (let i = 1; i <= (end - start)/gap + 1; i++) {
-        y_axis.push(fun(path[i], c));
+        y_axis.push(parseFloat(fun(path[i], c)));
     }
     for (let i = 1; i <= (end - start)/gap + 1; i++) {
         res.push({
@@ -81,7 +80,7 @@ function generate_Runge_Kutta(start, y0, end, gap, fun) {
 }
 
 function y(x, c){
-    return x*(Math.exp(x*c)-1);
+    return (x*(Math.exp(x*c)-1)).toPrecision(10);
 }
 
 function y_prime(x, y){

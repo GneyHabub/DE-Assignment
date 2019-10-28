@@ -4,11 +4,14 @@ window.myLine = new Chart(ctx1, config1);
 let ctx2 = document.getElementById('comparison').getContext('2d');
 window.myLine2 = new Chart(ctx2, config2);
 
+let ctx3 = document.getElementById('local_error').getContext('2d');
+window.myLine3 = new Chart(ctx3, config3);
+
 function update_graphs(){
-    config1.data.datasets[0].data = generate_original(x0, y0, max_point, gap, y);
-    config1.data.datasets[1].data = generate_Euler(x0, y0, max_point, gap, y_prime);
-    config1.data.datasets[2].data = generate_Improved_Euler(x0, y0, max_point, gap, y_prime);
-    config1.data.datasets[3].data = generate_Runge_Kutta(x0, y0, max_point, gap, y_prime);
+    orig = config1.data.datasets[0].data = generate_original(x0, y0, max_point, gap, y);
+    euler = config1.data.datasets[1].data = generate_Euler(x0, y0, max_point, gap, y_prime);
+    heun = config1.data.datasets[2].data = generate_Improved_Euler(x0, y0, max_point, gap, y_prime);
+    runge_kutta = config1.data.datasets[3].data = generate_Runge_Kutta(x0, y0, max_point, gap, y_prime);
     config2.data.datasets[0].data = [
         config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y,
     ];
@@ -18,8 +21,14 @@ function update_graphs(){
     config2.data.datasets[2].data = [
         config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y,
     ];
+    config3.data.datasets[0].data = euler_error();
+    config3.data.datasets[1].data = heun_error();
+    config3.data.datasets[2].data = runge_kutta_error();
+    console.log(config3.data.datasets[0].data);
+
     window.myLine.update();
     window.myLine2.update();
+    window.myLine3.update();
 }
 
 let set_gap = document.getElementById('change_gap').addEventListener('click', function () {

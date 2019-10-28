@@ -33,14 +33,14 @@ button{
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-column-gap: 50px;
+    grid-row-gap: 50px;
 }
 
 .sidebar{
     height: 60%;
 
-    margin-top: 30px;
     position: sticky;
-    top: 10px;
+    top: 40px;
 
     border: 2px solid rgb(22, 31, 39);
     border-radius: 6px;
