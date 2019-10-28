@@ -7,34 +7,18 @@ let euler = generate_Euler(x0, y0, max_point,  gap, y_prime);
 let heun = generate_Improved_Euler(x0, y0, max_point,  gap, y_prime);
 let runge_kutta = generate_Runge_Kutta(x0, y0, max_point,  gap, y_prime);
 
-let euler_error = function(){
+let local_error = function(start, y0, end, gap, fun){
+    let path = generate_points(start, end, gap);
+    let y_axis = [];
+    y_axis.push(y0);
     let res = [];
-    for (let i =0; i < orig.length; i++){
-        res.push({
-            x: i,
-            y: orig[i].y - euler[i].y
-        });
+    for (let i = 1; i <= (end - start)/gap; i++) {
+        y_axis.push((fun[i].y - fun[i-1].y)/gap - y_prime(path[i], fun[i].y));
     }
-    return res;
-};
-
-let heun_error = function(){
-    let res = [];
-    for (let i =0; i < orig.length; i++){
+    for (let i = 0; i <= (end - start)/gap; i++) {
         res.push({
-            x: i,
-            y: orig[i].y - heun[i].y
-        });
-    }
-    return res;
-};
-
-let runge_kutta_error = function(){
-    let res = [];
-    for (let i =0; i < orig.length; i++){
-        res.push({
-            x: i,
-            y: orig[i].y - runge_kutta[i].y
+            x: path[i],
+            y: y_axis[i]
         });
     }
     return res;
@@ -147,21 +131,21 @@ let config3 = {
             {
                 label: 'Euler',
                 borderColor: '#fef75c',
-                data: euler_error(),
+                data: local_error(x0, y0, max_point, gap, euler),
                 lineTension: 0,
                 fill: 'none'
             },
             {
                 label: 'Improved Euler (Heun)',
                 borderColor: '#F33434',
-                data: heun_error(),
+                data: local_error(x0, y0, max_point, gap, heun),
                 lineTension: 0,
                 fill: 'none'
             },
             {
                 label: 'Runge-Kutta',
                 borderColor: '#31d328',
-                data: runge_kutta_error(),
+                data: local_error(x0, y0, max_point, gap, runge_kutta),
                 lineTension: 0,
                 fill: 'none'
             }]

@@ -21,9 +21,9 @@ function update_graphs(){
     config2.data.datasets[2].data = [
         config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y,
     ];
-    config3.data.datasets[0].data = euler_error();
-    config3.data.datasets[1].data = heun_error();
-    config3.data.datasets[2].data = runge_kutta_error();
+    config3.data.datasets[0].data = local_error(x0, y0, max_point, gap, euler);
+    config3.data.datasets[1].data = local_error(x0, y0, max_point, gap, heun);
+    config3.data.datasets[2].data = local_error(x0, y0, max_point, gap, runge_kutta);
     console.log(config3.data.datasets[0].data);
 
     window.myLine.update();

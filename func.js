@@ -79,6 +79,7 @@ function generate_Runge_Kutta(start, y0, end, gap, fun) {
     return res;
 }
 
+
 function y(x, c){
     return (x*(Math.exp(x*c)-1)).toPrecision(10);
 }
