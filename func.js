@@ -1,7 +1,8 @@
 function generate_points(start, x, gap) {
     let res = [];
-    for (let i = start; i <= x; i += gap){
-        res.push(Number(i.toPrecision(3)));
+
+    for (let i = start; i <= x+0.00001; i += gap){
+        res.push(Number(i.toFixed(3)));
     }
     return res;
 }
