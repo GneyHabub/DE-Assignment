@@ -12,19 +12,14 @@ function update_graphs(){
     euler = config1.data.datasets[1].data = generate_Euler(x0, y0, max_point, gap, y_prime);
     heun = config1.data.datasets[2].data = generate_Improved_Euler(x0, y0, max_point, gap, y_prime);
     runge_kutta = config1.data.datasets[3].data = generate_Runge_Kutta(x0, y0, max_point, gap, y_prime);
-    config2.data.datasets[0].data = [
-        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y,
-    ];
-    config2.data.datasets[1].data = [
-        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y,
-    ];
-    config2.data.datasets[2].data = [
-        config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y,
-    ];
-    config3.data.datasets[0].data = local_error(x0, y0, max_point, gap, euler);
-    config3.data.datasets[1].data = local_error(x0, y0, max_point, gap, heun);
-    config3.data.datasets[2].data = local_error(x0, y0, max_point, gap, runge_kutta);
-    console.log(config3.data.datasets[0].data);
+
+    config3.data.datasets[0].data = local_euler(x0, y0, max_point, gap, y_prime);
+    config3.data.datasets[1].data = local_heun(x0, y0, max_point, gap, y_prime);
+    config3.data.datasets[2].data = local_runge_kutta(x0, y0, max_point, gap, y_prime);
+
+    config2.data.datasets[0].data = local_euler(x0, y0, max_point, gap, y_prime);
+    config2.data.datasets[1].data = local_heun(x0, y0, max_point, gap, y_prime);
+    config2.data.datasets[2].data = local_runge_kutta(x0, y0, max_point, gap, y_prime);
 
     window.myLine.update();
     window.myLine2.update();
@@ -32,7 +27,7 @@ function update_graphs(){
 }
 
 let set_gap = document.getElementById('change_gap').addEventListener('click', function () {
-    if (parseFloat(document.getElementById('gap').value) > 0){
+    if (parseFloat(document.getElementById('gap').value) > 0 && parseFloat(document.getElementById('gap').value) <= max_point/2){
         gap = parseFloat(document.getElementById('gap').value);
         update_graphs();
     }else {
@@ -66,7 +61,7 @@ let set_x0 = document.getElementById('change_x0').addEventListener('click', func
 
 let set_y0 = document.getElementById('change_y0').addEventListener('click', function () {
 
-    if (parseFloat(document.getElementById('y0').value) > 0 ){
+    if (parseFloat(document.getElementById('y0').value) > 0){
         y0 = parseFloat(document.getElementById('y0').value);
         update_graphs();
     }else {

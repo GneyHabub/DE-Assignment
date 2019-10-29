@@ -7,27 +7,72 @@ let euler = generate_Euler(x0, y0, max_point,  gap, y_prime);
 let heun = generate_Improved_Euler(x0, y0, max_point,  gap, y_prime);
 let runge_kutta = generate_Runge_Kutta(x0, y0, max_point,  gap, y_prime);
 
-let local_error = function(start, y0, end, gap, fun){
+let local_euler = function (start, y0, end, gap, fun){
     let path = generate_points(start, end, gap);
     let y_axis = [];
     y_axis.push(y0);
-    let res = [];
-    for (let i = 1; i <= (end - start)/gap; i++) {
-        y_axis.push((fun[i].y - fun[i-1].y)/gap - y_prime(path[i], fun[i].y));
+    for (let i = 1; i <= (end - start)/gap + 1; i++) {
+        y_axis.push(orig[i - 1].y + gap * fun(path[i - 1], orig[i - 1].y));
     }
-    for (let i = 0; i <= (end - start)/gap; i++) {
-        res.push({
+    let ans = [];
+    for (let i = 0; i < (end - start)/gap + 1; i++) {
+        ans.push({
             x: path[i],
-            y: y_axis[i]
+            y: orig[i].y - y_axis[i]
         });
     }
-    return res;
+    console.log(orig);
+    return ans;
+};
+
+let local_heun = function (start, y0, end, gap, fun){
+    let path = generate_points(start, end, gap);
+    let y_axis = [];
+    y_axis.push(y0);
+    for (let i = 1; i <= (end - start)/gap + 1; i++) {
+        y_axis.push(orig[i - 1].y + (gap/2) * (fun(path[i - 1], orig[i - 1].y) + fun(path[i], (orig[i - 1].y + gap*fun(path[i - 1], orig[i - 1].y)))));
+    }
+    let ans = [];
+    for (let i = 0; i < (end - start)/gap + 1; i++) {
+        ans.push({
+            x: path[i],
+            y: orig[i].y - y_axis[i]
+        });
+    }
+    console.log(orig);
+    return ans;
+};
+
+let local_runge_kutta = function (start, y0, end, gap, fun){
+    let path = generate_points(start, end, gap);
+    let y_axis = [];
+    y_axis.push(y0);
+    for (let i = 1; i <= (end - start)/gap + 1; i++) {
+        let k1 = gap*fun(path[i-1], orig[i - 1].y);
+        let k2 = gap*fun(path[i-1]+gap/2, orig[i - 1].y + k1/2);
+        let k3 = gap*fun(path[i-1]+gap/2, orig[i - 1].y + k2/2);
+        let k4 = gap*fun(path[i-1]+gap, orig[i - 1].y + k3);
+        y_axis.push(orig[i - 1].y + (k1 + 2*k2 + 2*k3 + k4)/6);
+    }
+    let ans = [];
+    for (let i = 0; i < (end - start)/gap + 1; i++) {
+        ans.push({
+            x: path[i],
+            y: orig[i].y - y_axis[i]
+        });
+    }
+    console.log(orig);
+    return ans;
 };
 
 //building the graphs
 let config1 = {
     type: 'line',
     data: {
+        title: {
+            display: true,
+            text: 'GRAPHS'
+        },
         labels: generate_points(0, max_point, gap),
         datasets: [
             {
@@ -60,6 +105,10 @@ let config1 = {
             }]
     },
     options: {
+        title: {
+            display: true,
+            text: 'GRAPHS',
+        },
         scales: {
             xAxes: [{
                 type: 'linear',
@@ -75,49 +124,46 @@ let config1 = {
 };
 
 let config2 = {
-    type: 'horizontalBar',
+    type: 'line',
     data: {
-        labels: ['Global Error'],
-        datasets:[{
+        labels: generate_points(0, max_point - x0, gap),
+        datasets: [
+            {
                 label: 'Euler',
                 borderColor: '#fef75c',
-                backgroundColor: 'rgba(254, 247, 92, 0.3)',
-                hoverBackgroundColor: 'rgba(254, 247, 92, 0.5)',
-                borderWidth: 1,
-                data: [
-                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[1].data[config1.data.datasets[1].data.length - 1].y
-                ]
+                data: local_euler(x0, y0, max_point, gap, y_prime),
+                lineTension: 0,
+                fill: 'none'
             },
             {
                 label: 'Improved Euler (Heun)',
                 borderColor: '#F33434',
-                backgroundColor: 'rgba(243, 52, 522, 0.3)',
-                hoverBackgroundColor:'rgba(243, 52, 522, 0.5)',
-                borderWidth: 1,
-                data: [
-                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[2].data[config1.data.datasets[2].data.length - 1].y
-
-                ]
+                data: local_heun(x0, y0, max_point, gap, y_prime),
+                lineTension: 0,
+                fill: 'none'
             },
             {
-                label: 'Runge Kutta',
-                borderColor:'#31D328',
-                backgroundColor: 'rgba(49, 211, 40, 0.3)',
-                hoverBackgroundColor: 'rgba(49, 211, 40, 0.5)',
-                borderWidth: 1,
-                data: [
-                    config1.data.datasets[0].data[config1.data.datasets[0].data.length - 1].y - config1.data.datasets[3].data[config1.data.datasets[3].data.length - 1].y
-
-                ]
+                label: 'Runge-Kutta',
+                borderColor: '#31d328',
+                data: local_runge_kutta(x0, y0, max_point, gap, y_prime),
+                lineTension: 0,
+                fill: 'none'
             }]
     },
     options: {
+        title: {
+            display: true,
+            text: 'LOCAL ERROR'
+        },
         scales: {
-            yAxes: [{
-                ticks: {min: 0}
-            }],
             xAxes: [{
-                ticks:{beginAtZero: true}
+                type: 'linear',
+                position: 'bottom',
+                ticks: {beginAtZero: true}
+            }],
+            yAxes: [{
+                display: true,
+                ticks: {beginAtZero: true}
             }]
         }
     }
@@ -131,27 +177,30 @@ let config3 = {
             {
                 label: 'Euler',
                 borderColor: '#fef75c',
-                data: local_error(x0, y0, max_point, gap, euler),
+                data: local_euler(x0, y0, max_point, gap, y_prime),
                 lineTension: 0,
                 fill: 'none'
             },
             {
                 label: 'Improved Euler (Heun)',
                 borderColor: '#F33434',
-                data: local_error(x0, y0, max_point, gap, heun),
+                data: local_heun(x0, y0, max_point, gap, y_prime),
                 lineTension: 0,
                 fill: 'none'
             },
             {
                 label: 'Runge-Kutta',
                 borderColor: '#31d328',
-                data: local_error(x0, y0, max_point, gap, runge_kutta),
+                data: local_runge_kutta(x0, y0, max_point, gap, y_prime),
                 lineTension: 0,
                 fill: 'none'
             }]
     },
     options: {
-        title: "Local Error",
+        title: {
+            display: true,
+            text: 'GLOBAL ERROR'
+        },
         scales: {
             xAxes: [{
                 type: 'linear',
