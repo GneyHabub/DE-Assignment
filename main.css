@@ -37,35 +37,40 @@ button{
 }
 
 .sidebar{
-    height: 60%;
-
-    position: sticky;
-    top: 40px;
-
     border: 2px solid rgb(22, 31, 39);
     border-radius: 6px;
     padding: 10px;
     box-shadow: 5px 5px rgb(22, 31, 39);
+    font-size: 17px;
 }
 
 .orig_graph{
+    height: 60%;
+    position: sticky;
+    top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-row-gap: 5px;
     grid-column-gap: 30px;
+    margin-top: 65px;
+}
+
+.ge_settings{
+    height: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    margin-top: 65px;
 }
 
 input{
     width: 120px;
     height: 52px;
+    text-align: center;
 }
 
 p{
-    border: 1px solid rgb(22, 31, 39);
-    border-radius: 6px;
     width: 60px;
     height: 26px;
-    margin: 0;
     text-align: center;
 }
 
