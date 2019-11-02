@@ -96,7 +96,7 @@ let change_theme = document.getElementById('change_theme').onclick = function ()
         config1.data.datasets[0].borderColor = '#000';
         config1.data.datasets[1].borderColor = config2.data.datasets[0].borderColor = config3.data.datasets[0].borderColor = '#e80301';
         config1.data.datasets[2].borderColor = config2.data.datasets[1].borderColor = config3.data.datasets[1].borderColor = '#0ce11e';
-        config1.data.datasets[3].borderColor = config2.data.datasets[2].borderColor = config3.data.datasets[2].borderColor = '#eaef00';
+        config1.data.datasets[3].borderColor = config2.data.datasets[2].borderColor = config3.data.datasets[2].borderColor = '#efd100';
         update_graphs();
     }else if (theme === 'light'){
         theme = 'dark';
