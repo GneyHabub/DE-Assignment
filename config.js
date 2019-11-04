@@ -13,10 +13,6 @@ let runge_kutta = generate_Runge_Kutta(x0, y0, max_point,  gap, y_prime);
 let config1 = {
     type: 'line',
     data: {
-        title: {
-            display: true,
-            text: 'GRAPHS'
-        },
         labels: generate_points(0, max_point, gap),
         datasets: [
             {
