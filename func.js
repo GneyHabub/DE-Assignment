@@ -111,7 +111,7 @@ let local_euler = function (start, y0, end, gap, fun, orig){
     for (let i = 0; i <= dest - 1; i++) {
         ans.push({
             x: x_axis[i],
-            y: orig[i].y - y_axis[i]
+            y: Math.abs(orig[i].y - y_axis[i])
         });
     }
     return ans;
@@ -130,7 +130,7 @@ let local_heun = function (start, y0, end, gap, fun, orig){
     for (let i = 0; i <= dest-1; i++) {
         ans.push({
             x: x_axis[i],
-            y: orig[i].y - y_axis[i]
+            y: Math.abs(orig[i].y - y_axis[i])
         });
     }
     return ans;
@@ -153,7 +153,7 @@ let local_runge_kutta = function (start, y0, end, gap, fun, orig){
     for (let i = 0; i <= dest - 1; i++) {
         ans.push({
             x: x_axis[i],
-            y: orig[i].y - y_axis[i]
+            y: Math.abs(orig[i].y - y_axis[i])
         });
     }
     return ans;
