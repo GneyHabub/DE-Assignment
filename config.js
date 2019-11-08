@@ -53,11 +53,19 @@ let config1 = {
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
-                ticks: {beginAtZero: true}
+                ticks: {beginAtZero: true},
+                scaleLabel: {
+                    display: true,
+                    labelString: 'X'
+                }
             }],
             yAxes: [{
                 display: true,
-                ticks: {beginAtZero: true}
+                ticks: {beginAtZero: true},
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Y'
+                }
             }]
         }
     }
@@ -99,11 +107,20 @@ let config2 = {
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
-                ticks: {beginAtZero: true}
+                ticks: {beginAtZero: true},
+
+                scaleLabel: {
+                    display: true,
+                    labelString: 'X'
+                }
             }],
             yAxes: [{
                 display: true,
-                ticks: {beginAtZero: true}
+                ticks: {beginAtZero: true},
+                scaleLabel: {
+                    display: true,
+                    labelString: 'y'
+                }
             }]
         }
     }
